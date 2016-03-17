@@ -1,0 +1,78 @@
+<input type="hidden" value="<%=auth%>" class="isLogin">
+
+<% if (data.img.length !== 0) { %>
+
+    <div class="img-container">
+
+        <% data.img.forEach(function(val) { %>
+
+            <div class="img" data-imgId="<%=val._id%>">
+
+                <p>
+                    <i class="fa fa-user"></i>
+                    <%=data.uname%>
+                </p>
+
+                <img src="<%=val.imgUrl%>" alt="<%=val.imgName%>">
+
+                <% if (luser.likePic.indexOf(val._id) !== -1 && luser.dislikePic.indexOf(val._id) === -1) { %>
+
+                    <button data-hasLike="1" data-imgId="<%=val._id%>" data-imgCreator="<%=data._id%>" class="like-btn" title="You have like this"><i class="fa fa-thumbs-up"></i></button><span class="likes"><%=val.likes%></span>
+
+                    <button data-hasDislike="0" data-imgId="<%=val._id%>" data-imgCreator="<%=data._id%>" class="dislike-btn" title="I dislike this"><i class="fa fa-thumbs-o-down"></i></button><span class="dislikes"><%=val.dislikes%></span>
+
+                    <% } else if (luser.likePic.indexOf(val._id) === -1 && luser.dislikePic.indexOf(val._id) !== -1) { %>
+
+                        <button data-hasLike="0" data-imgId="<%=val._id%>" data-imgCreator="<%=data._id%>" class="like-btn" title="I like this"><i class="fa fa-thumbs-o-up"></i></button><span class="likes"><%=val.likes%></span>
+
+                        <button data-hasDislike="1" data-imgId="<%=val._id%>" data-imgCreator="<%=data._id%>" class="dislike-btn" title="You have dislike this"><i class="fa fa-thumbs-down"></i></button><span class="dislikes"><%=val.dislikes%></span>
+
+                        <% } else { %>
+
+                            <button data-hasLike="0" data-imgId="<%=val._id%>" data-imgCreator="<%=data._id%>" class="like-btn" title="I like this"><i class="fa fa-thumbs-o-up"></i></button><span class="likes"><%=val.likes%></span>
+
+                            <button data-hasDislike="0" data-imgId="<%=val._id%>" data-imgCreator="<%=data._id%>" class="dislike-btn" title="I dislike this"><i class="fa fa-thumbs-o-down"></i></button><span class="dislikes"><%=val.dislikes%></span>
+
+                            <% } %>
+
+                                <p>
+                                    <%=val.imgName%>
+                                </p>
+
+                                <button class="delete-img-btn" data-imgId="<%=val._id%>">Delete Image</button>
+
+            </div>
+
+            <% }) %>
+
+                <div class="add-img-button">
+                    <h3>Add Image</h3>
+                    <div class="hover-bg"></div>
+                </div>
+
+    </div>
+
+    <% } else { %>
+
+        <h1 class="no-album-warning">It looks like you have not added any favorite image to your album page.<br> Here are some few tips to get you started</h1>
+
+        <ol>
+            <li>Visit the
+                <a href="https://images.google.com/" target="_blank" class="google-image-link">Google Image Search Page</a> if you don't have any image links to use for creating your photo album
+            </li>
+            <li>Search for your favorite thing</li>
+            <li>In the search results, click on the image thumbnail you like and want to use</li>
+            <li>A popup will show up with the larger version of the image, click on the view image button</li>
+            <li>Wait for the image to load, after loading copy the link in the address bar and come back to the website(Netbum)</li>
+            <li>Click on the add image button below, a popup will show up</li>
+            <li>Fill in the field that ask you of the image url by pasting in the link you copy from the google image search page</li>
+            <li>Fill the field that ask you of the image name</li>
+            <li>Click the Add button and you are done</li>
+        </ol>
+
+        <div class="add-img-button" style="margin-left:50px;">
+            <h3>Add Image</h3>
+            <div class="hover-bg"></div>
+        </div>
+
+        <% } %>
